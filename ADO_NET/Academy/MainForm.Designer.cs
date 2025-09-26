@@ -29,8 +29,10 @@
 		private void InitializeComponent()
 		{
 			this.statusStrip = new System.Windows.Forms.StatusStrip();
+			this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageStudents = new System.Windows.Forms.TabPage();
+			this.dataGridViewStudents = new System.Windows.Forms.DataGridView();
 			this.tabPageGroups = new System.Windows.Forms.TabPage();
 			this.comboBoxGroupsDirection = new System.Windows.Forms.ComboBox();
 			this.labelGroupsDirection = new System.Windows.Forms.Label();
@@ -38,22 +40,25 @@
 			this.tabPageDirections = new System.Windows.Forms.TabPage();
 			this.dataGridViewDirections = new System.Windows.Forms.DataGridView();
 			this.tabPageDisciplines = new System.Windows.Forms.TabPage();
-			this.tabPageTeachers = new System.Windows.Forms.TabPage();
-			this.dataGridViewStudents = new System.Windows.Forms.DataGridView();
 			this.dataGridViewDisciplines = new System.Windows.Forms.DataGridView();
+			this.tabPageTeachers = new System.Windows.Forms.TabPage();
 			this.dataGridViewTeachers = new System.Windows.Forms.DataGridView();
-			this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.comboBoxStudentsGroup = new System.Windows.Forms.ComboBox();
+			this.labelStudentsGroup = new System.Windows.Forms.Label();
+			this.labelStudentsDirection = new System.Windows.Forms.Label();
+			this.comboBoxStudentsDirection = new System.Windows.Forms.ComboBox();
+			this.buttonAddStudent = new System.Windows.Forms.Button();
 			this.statusStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.tabPageStudents.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudents)).BeginInit();
 			this.tabPageGroups.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewGroups)).BeginInit();
 			this.tabPageDirections.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewDirections)).BeginInit();
 			this.tabPageDisciplines.SuspendLayout();
-			this.tabPageTeachers.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudents)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewDisciplines)).BeginInit();
+			this.tabPageTeachers.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTeachers)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -66,6 +71,12 @@
 			this.statusStrip.Size = new System.Drawing.Size(800, 22);
 			this.statusStrip.TabIndex = 0;
 			this.statusStrip.Text = "statusStrip1";
+			// 
+			// toolStripStatusLabel
+			// 
+			this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+			this.toolStripStatusLabel.Size = new System.Drawing.Size(112, 17);
+			this.toolStripStatusLabel.Text = "toolStripStatusLabel";
 			// 
 			// tabControl
 			// 
@@ -84,6 +95,11 @@
 			// 
 			// tabPageStudents
 			// 
+			this.tabPageStudents.Controls.Add(this.buttonAddStudent);
+			this.tabPageStudents.Controls.Add(this.comboBoxStudentsDirection);
+			this.tabPageStudents.Controls.Add(this.labelStudentsDirection);
+			this.tabPageStudents.Controls.Add(this.labelStudentsGroup);
+			this.tabPageStudents.Controls.Add(this.comboBoxStudentsGroup);
 			this.tabPageStudents.Controls.Add(this.dataGridViewStudents);
 			this.tabPageStudents.Location = new System.Drawing.Point(4, 22);
 			this.tabPageStudents.Name = "tabPageStudents";
@@ -92,6 +108,17 @@
 			this.tabPageStudents.TabIndex = 0;
 			this.tabPageStudents.Text = "Students";
 			this.tabPageStudents.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewStudents
+			// 
+			this.dataGridViewStudents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.dataGridViewStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewStudents.Location = new System.Drawing.Point(0, 33);
+			this.dataGridViewStudents.Name = "dataGridViewStudents";
+			this.dataGridViewStudents.Size = new System.Drawing.Size(789, 366);
+			this.dataGridViewStudents.TabIndex = 0;
 			// 
 			// tabPageGroups
 			// 
@@ -168,27 +195,6 @@
 			this.tabPageDisciplines.Text = "Disciplines";
 			this.tabPageDisciplines.UseVisualStyleBackColor = true;
 			// 
-			// tabPageTeachers
-			// 
-			this.tabPageTeachers.Controls.Add(this.dataGridViewTeachers);
-			this.tabPageTeachers.Location = new System.Drawing.Point(4, 22);
-			this.tabPageTeachers.Name = "tabPageTeachers";
-			this.tabPageTeachers.Size = new System.Drawing.Size(792, 402);
-			this.tabPageTeachers.TabIndex = 4;
-			this.tabPageTeachers.Text = "Teachers";
-			this.tabPageTeachers.UseVisualStyleBackColor = true;
-			// 
-			// dataGridViewStudents
-			// 
-			this.dataGridViewStudents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.dataGridViewStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridViewStudents.Location = new System.Drawing.Point(0, 33);
-			this.dataGridViewStudents.Name = "dataGridViewStudents";
-			this.dataGridViewStudents.Size = new System.Drawing.Size(789, 366);
-			this.dataGridViewStudents.TabIndex = 0;
-			// 
 			// dataGridViewDisciplines
 			// 
 			this.dataGridViewDisciplines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -199,6 +205,16 @@
 			this.dataGridViewDisciplines.Name = "dataGridViewDisciplines";
 			this.dataGridViewDisciplines.Size = new System.Drawing.Size(789, 377);
 			this.dataGridViewDisciplines.TabIndex = 0;
+			// 
+			// tabPageTeachers
+			// 
+			this.tabPageTeachers.Controls.Add(this.dataGridViewTeachers);
+			this.tabPageTeachers.Location = new System.Drawing.Point(4, 22);
+			this.tabPageTeachers.Name = "tabPageTeachers";
+			this.tabPageTeachers.Size = new System.Drawing.Size(792, 402);
+			this.tabPageTeachers.TabIndex = 4;
+			this.tabPageTeachers.Text = "Teachers";
+			this.tabPageTeachers.UseVisualStyleBackColor = true;
 			// 
 			// dataGridViewTeachers
 			// 
@@ -211,11 +227,52 @@
 			this.dataGridViewTeachers.Size = new System.Drawing.Size(789, 370);
 			this.dataGridViewTeachers.TabIndex = 0;
 			// 
-			// toolStripStatusLabel1
+			// comboBoxStudentsGroup
 			// 
-			this.toolStripStatusLabel.Name = "toolStripStatusLabel1";
-			this.toolStripStatusLabel.Size = new System.Drawing.Size(112, 17);
-			this.toolStripStatusLabel.Text = "toolStripStatusLabel";
+			this.comboBoxStudentsGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxStudentsGroup.FormattingEnabled = true;
+			this.comboBoxStudentsGroup.Location = new System.Drawing.Point(73, 6);
+			this.comboBoxStudentsGroup.Name = "comboBoxStudentsGroup";
+			this.comboBoxStudentsGroup.Size = new System.Drawing.Size(139, 21);
+			this.comboBoxStudentsGroup.TabIndex = 1;
+			this.comboBoxStudentsGroup.SelectedIndexChanged += new System.EventHandler(this.comboBoxStudentsGroup_SelectedIndexChanged);
+			// 
+			// labelStudentsGroup
+			// 
+			this.labelStudentsGroup.AutoSize = true;
+			this.labelStudentsGroup.Location = new System.Drawing.Point(9, 10);
+			this.labelStudentsGroup.Name = "labelStudentsGroup";
+			this.labelStudentsGroup.Size = new System.Drawing.Size(39, 13);
+			this.labelStudentsGroup.TabIndex = 2;
+			this.labelStudentsGroup.Text = "Гуппа:";
+			// 
+			// labelStudentsDirection
+			// 
+			this.labelStudentsDirection.AutoSize = true;
+			this.labelStudentsDirection.Location = new System.Drawing.Point(264, 10);
+			this.labelStudentsDirection.Name = "labelStudentsDirection";
+			this.labelStudentsDirection.Size = new System.Drawing.Size(128, 13);
+			this.labelStudentsDirection.TabIndex = 3;
+			this.labelStudentsDirection.Text = "Направление обкчения:";
+			// 
+			// comboBoxStudentsDirection
+			// 
+			this.comboBoxStudentsDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxStudentsDirection.FormattingEnabled = true;
+			this.comboBoxStudentsDirection.Location = new System.Drawing.Point(399, 6);
+			this.comboBoxStudentsDirection.Name = "comboBoxStudentsDirection";
+			this.comboBoxStudentsDirection.Size = new System.Drawing.Size(286, 21);
+			this.comboBoxStudentsDirection.TabIndex = 4;
+			this.comboBoxStudentsDirection.SelectedIndexChanged += new System.EventHandler(this.comboBoxStudentsDirection_SelectedIndexChanged);
+			// 
+			// buttonAddStudent
+			// 
+			this.buttonAddStudent.Location = new System.Drawing.Point(714, 6);
+			this.buttonAddStudent.Name = "buttonAddStudent";
+			this.buttonAddStudent.Size = new System.Drawing.Size(75, 23);
+			this.buttonAddStudent.TabIndex = 5;
+			this.buttonAddStudent.Text = "Добавить";
+			this.buttonAddStudent.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
@@ -230,15 +287,16 @@
 			this.statusStrip.PerformLayout();
 			this.tabControl.ResumeLayout(false);
 			this.tabPageStudents.ResumeLayout(false);
+			this.tabPageStudents.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudents)).EndInit();
 			this.tabPageGroups.ResumeLayout(false);
 			this.tabPageGroups.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewGroups)).EndInit();
 			this.tabPageDirections.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewDirections)).EndInit();
 			this.tabPageDisciplines.ResumeLayout(false);
-			this.tabPageTeachers.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudents)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewDisciplines)).EndInit();
+			this.tabPageTeachers.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTeachers)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -262,6 +320,11 @@
 		private System.Windows.Forms.DataGridView dataGridViewDisciplines;
 		private System.Windows.Forms.DataGridView dataGridViewTeachers;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+		private System.Windows.Forms.Button buttonAddStudent;
+		private System.Windows.Forms.ComboBox comboBoxStudentsDirection;
+		private System.Windows.Forms.Label labelStudentsDirection;
+		private System.Windows.Forms.Label labelStudentsGroup;
+		private System.Windows.Forms.ComboBox comboBoxStudentsGroup;
 	}
 }
 

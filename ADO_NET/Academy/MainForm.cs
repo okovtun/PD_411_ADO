@@ -17,6 +17,7 @@ namespace Academy
 		string connectionString = "Data Source=DESKTOP-QHG18FL\\SQLEXPRESS;Initial Catalog=PD_321;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 		SqlConnection connection;
 		Dictionary<string, int> d_groupDirection;
+		Dictionary<string, int> d_studentsGroup;
 
 		Query[] queries = new Query[]
 			{
@@ -55,11 +56,15 @@ namespace Academy
 			Console.WriteLine(this.Name);
 			Console.WriteLine(tabControl.TabCount);
 			
-			d_groupDirection = LoadDataToComboBox("*", "Directions");
+			d_groupDirection = LoadDataToDictionary("*", "Directions");
+			d_studentsGroup = LoadDataToDictionary("*", "Groups");
 			comboBoxGroupsDirection.Items.AddRange(d_groupDirection.Keys.ToArray());
-			comboBoxGroupsDirection.SelectedIndex = 0;
+			comboBoxStudentsDirection.Items.AddRange(d_groupDirection.Keys.ToArray());
+			comboBoxStudentsGroup.Items.AddRange(d_studentsGroup.Keys.ToArray());
+			comboBoxStudentsDirection.SelectedIndex = comboBoxGroupsDirection.SelectedIndex = 0;
+			comboBoxStudentsGroup.SelectedIndex = 0;
 
-			tabControl.SelectedIndex = 1;
+			tabControl.SelectedIndex = 0;
 
 			for (int i = 0; i < tabControl.TabCount; i++)
 			{
@@ -103,11 +108,14 @@ namespace Academy
 			return table;
 		}
 
-		Dictionary<string,int> LoadDataToComboBox(string fields, string tables)
+		Dictionary<string,int> LoadDataToDictionary(string fields, string tables, string condition = "")
 		{
 			Dictionary<string, int> dictionary = new Dictionary<string, int>();
 			dictionary.Add("Все", 0);
 			string cmd = $"SELECT {fields} FROM {tables}";
+			if (!string.IsNullOrWhiteSpace(condition))
+				cmd += $" WHERE {condition}";
+
 			SqlCommand command = new SqlCommand(cmd, connection);
 			connection.Open();
 			SqlDataReader reader = command.ExecuteReader();
@@ -143,6 +151,37 @@ namespace Academy
 		private void dataGridViewChanged(object sender, EventArgs e)
 		{
 			toolStripStatusLabel.Text = $"{statusBarMessages[tabControl.SelectedIndex]}: {(sender as DataGridView).RowCount - 1}";
+		}
+
+		private void comboBoxStudentsDirection_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			string condition = comboBoxStudentsDirection.SelectedItem.ToString()=="Все" ? "" :
+				$" direction={d_groupDirection[(sender as ComboBox).SelectedItem.ToString()]}";
+			comboBoxStudentsGroup.Items.Clear();
+			comboBoxStudentsGroup.Items.AddRange(LoadDataToDictionary("*", "Groups", condition).Keys.ToArray());
+			dataGridViewStudents.DataSource = Select
+				(
+					queries[0].Fields,
+					queries[0].Tables,
+					queries[0].Condition + (string.IsNullOrEmpty(condition)? "" : $" AND {condition}")
+				);
+		}
+
+		private void comboBoxStudentsGroup_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			string condition_group =
+				comboBoxStudentsGroup.SelectedItem.ToString() == "Все" ? "" :
+				$"[group]={d_studentsGroup[comboBoxStudentsGroup.SelectedItem.ToString()]}";
+			string condition_direction = comboBoxStudentsDirection.SelectedItem.ToString() == "Все" ? "" :
+				$" direction={d_groupDirection[comboBoxStudentsDirection.SelectedItem.ToString()]}";
+			dataGridViewStudents.DataSource = Select
+				(
+					queries[0].Fields,
+					queries[0].Tables,
+					queries[0].Condition
+					+ (string.IsNullOrWhiteSpace(condition_group) ? "" : $" AND {condition_group}")
+					+ (string.IsNullOrWhiteSpace(condition_direction) ? "" : $" AND {condition_direction}")
+				);
 		}
 	}
 }
