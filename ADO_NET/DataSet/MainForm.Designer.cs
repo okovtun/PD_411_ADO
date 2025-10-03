@@ -33,11 +33,11 @@
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.tabPageDisciplines = new System.Windows.Forms.TabPage();
-			this.comboBoxDisciplinesForDirection = new System.Windows.Forms.ComboBox();
 			this.dataGridViewDisciplines = new System.Windows.Forms.DataGridView();
+			this.comboBoxDisciplinesForDirection = new System.Windows.Forms.ComboBox();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.tabControl.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPageDisciplines.SuspendLayout();
@@ -69,10 +69,11 @@
 			this.tabControl.Controls.Add(this.tabPage2);
 			this.tabControl.Controls.Add(this.tabPage3);
 			this.tabControl.Controls.Add(this.tabPageDisciplines);
-			this.tabControl.Location = new System.Drawing.Point(13, 12);
+			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl.Location = new System.Drawing.Point(0, 0);
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(775, 390);
+			this.tabControl.Size = new System.Drawing.Size(800, 450);
 			this.tabControl.TabIndex = 2;
 			// 
 			// tabPage1
@@ -92,18 +93,10 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(192, 74);
+			this.tabPage2.Size = new System.Drawing.Size(767, 364);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// statusStrip1
-			// 
-			this.statusStrip1.Location = new System.Drawing.Point(0, 428);
-			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(800, 22);
-			this.statusStrip1.TabIndex = 3;
-			this.statusStrip1.Text = "statusStrip1";
 			// 
 			// tabPage3
 			// 
@@ -122,10 +115,21 @@
 			this.tabPageDisciplines.Location = new System.Drawing.Point(4, 22);
 			this.tabPageDisciplines.Name = "tabPageDisciplines";
 			this.tabPageDisciplines.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageDisciplines.Size = new System.Drawing.Size(767, 364);
+			this.tabPageDisciplines.Size = new System.Drawing.Size(792, 424);
 			this.tabPageDisciplines.TabIndex = 3;
 			this.tabPageDisciplines.Text = "Disciplines";
 			this.tabPageDisciplines.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewDisciplines
+			// 
+			this.dataGridViewDisciplines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.dataGridViewDisciplines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewDisciplines.Location = new System.Drawing.Point(7, 35);
+			this.dataGridViewDisciplines.Name = "dataGridViewDisciplines";
+			this.dataGridViewDisciplines.Size = new System.Drawing.Size(782, 383);
+			this.dataGridViewDisciplines.TabIndex = 1;
 			// 
 			// comboBoxDisciplinesForDirection
 			// 
@@ -137,16 +141,13 @@
 			this.comboBoxDisciplinesForDirection.TabIndex = 0;
 			this.comboBoxDisciplinesForDirection.SelectedIndexChanged += new System.EventHandler(this.comboBoxDisciplinesForDirection_SelectedIndexChanged);
 			// 
-			// dataGridViewDisciplines
+			// statusStrip1
 			// 
-			this.dataGridViewDisciplines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.dataGridViewDisciplines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridViewDisciplines.Location = new System.Drawing.Point(7, 35);
-			this.dataGridViewDisciplines.Name = "dataGridViewDisciplines";
-			this.dataGridViewDisciplines.Size = new System.Drawing.Size(757, 323);
-			this.dataGridViewDisciplines.TabIndex = 1;
+			this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+			this.statusStrip1.TabIndex = 3;
+			this.statusStrip1.Text = "statusStrip1";
 			// 
 			// MainForm
 			// 
