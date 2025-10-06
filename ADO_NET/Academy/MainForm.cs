@@ -82,6 +82,8 @@ namespace Academy
 			dataGridView.DataSource = Select(queries[i].Fields,queries[i].Tables,queries[i].Condition);
 			//toolStripStatusLabel.Text = $"{statusBarMessages[i]}: {dataGridView.RowCount - 1}";
 			if (i == 1) ConvertLearningDays();
+			dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+			dataGridView.ReadOnly = true;
 		}
 		void FillStatusBar(int i)
 		{
@@ -219,6 +221,16 @@ namespace Academy
 					student.Student.ToString()
 					);
 			}
+		}
+
+		private void dataGridViewStudents_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			int i = dataGridViewStudents.SelectedRows[0].Index;
+			//Console.WriteLine(row.Index);
+			//Console.WriteLine((dataGridViewStudents.DataSource as DataTable).Rows[i][1]);
+			DataRow row = (dataGridViewStudents.DataSource as DataTable).Rows[i];
+			StudentForm form = new StudentForm(row);
+			DialogResult result = form.ShowDialog();
 		}
 	}
 }
