@@ -31,5 +31,17 @@ namespace Academy
 		{
 			return $"N'{LastName}',N'{FirstName}',N'{MiddleName}','{BirthDate}',N'{Email}',N'{Phone}',{Group}";
 		}
+		public string ToStringUpdate()
+		{
+			return $@"
+last_name=N'{LastName}',
+first_name=N'{FirstName}',
+middle_name=N'{MiddleName}',
+birth_date='{BirthDate}',
+email=N'{Email}',
+phone=N'{Phone}',
+[group]={Group}
+";
+		}
 	}
 }
