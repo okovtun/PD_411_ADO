@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 
 using System.Drawing;
+using System.IO;
 
 namespace Academy
 {
@@ -61,6 +62,21 @@ namespace Academy
 			connection.Open();
 			command.ExecuteNonQuery();
 			connection.Close();
+		}
+		public Image DownloadPhoto(int id, string table, string field)
+		{
+			Image photo = null;
+			string cmd = $"SELECT {field} FROM {table} WHERE {GetPrimaryKeyName(table)}={id}";
+			SqlCommand command = new SqlCommand(cmd, connection);
+			connection.Open();
+			SqlDataReader reader = command.ExecuteReader();
+			if (reader.Read())
+			{
+				MemoryStream ms = new MemoryStream(reader[0] as byte[]);
+				photo = Image.FromStream(ms);
+			}
+			connection.Close();
+			return photo;
 		}
 		public void Update(string table, string field, string condition)
 		{
