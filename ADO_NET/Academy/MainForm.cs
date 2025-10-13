@@ -52,6 +52,8 @@ namespace Academy
 		{
 			InitializeComponent();
 			AllocConsole();
+			bool encrypt = bool.Parse("true");
+			Console.WriteLine(encrypt);
 			connectionString = ConfigurationManager.ConnectionStrings["PD_321"].ConnectionString;
 			Console.WriteLine(connectionString);
 			connection = new SqlConnection(connectionString);
