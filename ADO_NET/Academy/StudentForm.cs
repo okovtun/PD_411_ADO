@@ -12,6 +12,8 @@ using System.Data;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
+using DataBaseTools;
+
 namespace Academy
 {
 	public partial class StudentForm : Form

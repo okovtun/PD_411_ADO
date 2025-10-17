@@ -8,6 +8,8 @@ using System.Drawing;
 using System.IO;
 using System.Data;
 
+using DataBaseTools;
+
 namespace Academy
 {
 	class Student : Human
