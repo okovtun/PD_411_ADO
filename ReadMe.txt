@@ -1,6 +1,9 @@
 ﻿https://github.com/okovtun/PD_411_ADO.git
 https://www.youtube.com/playlist?list=PLeqyOOqxeiIM_60jGVxnOdAWtEV_sP2qX
 
+LINQ:
+1. https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/query-keywords
+
 TODO:
 1. Зашифровать конфигурационный файл;
 2. Создать форму входа в систему;
