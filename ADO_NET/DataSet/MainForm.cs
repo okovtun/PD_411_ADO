@@ -126,7 +126,7 @@ namespace DataSet
 			string dstDisciplines_discipline_name = "discipline_name";
 			string dstDisciplines_number_of_lessons = "number_of_lessons";
 			DisciplinesDirectionsRelation.Tables.Add(dsTable_Disciplines);
-			DisciplinesDirectionsRelation.Tables[dsTable_Disciplines].Columns.Add(dstDisciplines_discipline_id);
+			DisciplinesDirectionsRelation.Tables[dsTable_Disciplines].Columns.Add(dstDisciplines_discipline_id, typeof(short));
 			DisciplinesDirectionsRelation.Tables[dsTable_Disciplines].Columns.Add(dstDisciplines_discipline_name);
 			DisciplinesDirectionsRelation.Tables[dsTable_Disciplines].Columns.Add(dstDisciplines_number_of_lessons);
 			DisciplinesDirectionsRelation.Tables[dsTable_Disciplines].PrimaryKey =
@@ -136,7 +136,7 @@ namespace DataSet
 			string dstDirections_direction_id = "direction_id";
 			string dstDirections_direction_name = "direction_name";
 			DisciplinesDirectionsRelation.Tables.Add(dsTable_Directions);
-			DisciplinesDirectionsRelation.Tables[dsTable_Directions].Columns.Add(dstDirections_direction_id);
+			DisciplinesDirectionsRelation.Tables[dsTable_Directions].Columns.Add(dstDirections_direction_id, typeof(byte));
 			DisciplinesDirectionsRelation.Tables[dsTable_Directions].Columns.Add(dstDirections_direction_name);
 			DisciplinesDirectionsRelation.Tables[dsTable_Directions].PrimaryKey =
 				new DataColumn[] { DisciplinesDirectionsRelation.Tables[dsTable_Directions].Columns[dstDirections_direction_id] };
@@ -145,8 +145,8 @@ namespace DataSet
 			string dstDDR_direction = "direction";
 			string dstDDR_discipline = "discipline";
 			DisciplinesDirectionsRelation.Tables.Add(dsTable_DDR);
-			DisciplinesDirectionsRelation.Tables[dsTable_DDR].Columns.Add(dstDDR_direction);
-			DisciplinesDirectionsRelation.Tables[dsTable_DDR].Columns.Add(dstDDR_discipline);
+			DisciplinesDirectionsRelation.Tables[dsTable_DDR].Columns.Add(dstDDR_direction, typeof(byte));
+			DisciplinesDirectionsRelation.Tables[dsTable_DDR].Columns.Add(dstDDR_discipline, typeof(short));
 			DisciplinesDirectionsRelation.Tables[dsTable_DDR].PrimaryKey =
 				new DataColumn[]
 				{
@@ -223,6 +223,44 @@ namespace DataSet
 
 		private void comboBoxDisciplinesForDirection_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			DataRowView selectedDirection = (DataRowView)comboBoxDisciplinesForDirection.SelectedItem;
+			//if (selectedDirection == null) return;
+			byte direction = Convert.ToByte(selectedDirection["direction_id"]);
+
+			DataTable Disciplines = DisciplinesDirectionsRelation.Tables["Disciplines"];
+			DataTable DDR = DisciplinesDirectionsRelation.Tables["DisciplinesDirectionsRelation"];
+
+			DataTable result = 
+				(
+					from	ddr			in DDR.AsEnumerable()
+					where	ddr.Field<byte>("direction") == direction
+					join	discipline	in Disciplines.AsEnumerable()
+					on		ddr.Field<short>("discipline") equals discipline.Field<short>("discipline_id")
+					select	discipline
+				).CopyToDataTable();
+
+			dataGridViewDisciplines.DataSource = result;
+
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			//DataRowView selectedDirection = (DataRowView)comboBoxDisciplinesForDirection.SelectedItem;
+			////if (selectedDirection == null) return;
+			//int direction = Convert.ToInt32(selectedDirection["direction_id"]);
+			//DataRow[] links = 
+			//	DisciplinesDirectionsRelation.Tables["DisciplinesDirectionsRelation"]
+			//	.Select($"direction={direction}");
+
+			//DataTable result = DisciplinesDirectionsRelation.Tables["Disciplines"].Clone();
+			//foreach (DataRow link in links)
+			//{
+			//	int discipline_id = Convert.ToInt32(link["discipline"]);
+			//	DataRow discipline = DisciplinesDirectionsRelation.Tables["Disciplines"].Rows.Find(discipline_id);
+			//	result.ImportRow(discipline);
+			//}
+			//dataGridViewDisciplines.DataSource = result;
+
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 			////1) Получаем набор значений из связующей таблицы:
 			//DataRow[] ddr = DisciplinesDirectionsRelation.Tables["DisciplinesDirectionsRelation"]
 			//	.Select($"direction={comboBoxDisciplinesForDirection.SelectedValue}");

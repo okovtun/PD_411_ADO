@@ -1,4 +1,5 @@
-﻿using System;
+﻿//#define EXAMPLE_1
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
+using System.Data.SqlClient;
 
 namespace LINQ
 {
@@ -19,6 +21,7 @@ namespace LINQ
 			InitializeComponent();
 			AllocConsole();
 
+#if EXAMPLE_1
 			//1) Создаем источник данных:
 			int[] arr = { 3, 5, 8, 13, 21, 34, 55 };
 
@@ -30,11 +33,17 @@ namespace LINQ
 				select i;
 
 			//3) Выполнение запроса:
-			foreach(int i in FibonacciQuery)
+			foreach (int i in FibonacciQuery)
 			{
 				Console.Write($"{i}\t");
 			}
-			Console.WriteLine();
+			Console.WriteLine(); 
+#endif
+
+			string connectionString 
+				= "Data Source=DESKTOP-QHG18FL\\SQLEXPRESS;Initial Catalog=PD_321;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+			SqlConnection connection = new SqlConnection(connectionString);
+			//(from direction in connection select )
 		}
 		[DllImport("kernel32.dll")]
 		public static extern bool AllocConsole();
